@@ -16,14 +16,25 @@
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()"/>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="assets/avatar.jpg"/>
+  <!-- Circular Favicon with Alpha Transparency (Photo in Clean Circle) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-circle.png"/>
+  <link rel="shortcut icon" href="favicon.ico"/>
+  <link rel="apple-touch-icon" href="assets/favicon-circle.png"/>
   
-  <!-- Google Fonts -->
+  <!-- Critical Network Preconnects & High-Speed Performance Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin=""/>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com"/>
+  <link rel="preload" as="image" href="assets/avatar.jpg"/>
+
+  <!-- Non-Blocking Typography & Iconography -->
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
   
   <!-- Tailwind CSS CDN with Atelier Whimsy Design Tokens -->
   <script src="https://cdn.tailwindcss.com"></script>
