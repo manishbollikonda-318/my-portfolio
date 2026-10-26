@@ -4,10 +4,18 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   
-  <title>Contact & Inquiries — Manish Bollikonda</title>
+  <title>Contact &amp; Inquiries — Manish Bollikonda</title>
   <meta name="description" content="Initiate a project brief or schedule an engineering conversation with Manish Bollikonda (AI Developer, GRIET AIML)."/>
   <meta name="author" content="Manish Bollikonda"/>
-  
+  <link rel="canonical" href="https://manishbollikonda-318.github.io/my-portfolio/contact.html"/>
+
+  <!-- Security Headers (Hacker-Hardened & Zero-Vulnerability Standard) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; base-uri 'self'; form-action 'self' mailto:;"/>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+  <meta http-equiv="X-Frame-Options" content="DENY"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()"/>
+
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="assets/avatar.jpg"/>
   
@@ -169,7 +177,7 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="font-label-badge text-[11px] text-on-surface tracking-wider uppercase font-bold">Available</span>
         </div>
-        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container transition-colors shadow-sm" title="View Resume">
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container transition-colors shadow-sm" title="View Resume">
           <span class="material-symbols-outlined text-[16px] text-tertiary">download</span>
           <span>Resume</span>
         </a>
@@ -267,7 +275,7 @@
                   </span>
                 </div>
               </div>
-              <a href="https://wa.me/919392405567?text=Hi%20Manish,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you!" target="_blank" class="shrink-0 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition-all flex items-center gap-1.5 active:scale-95 shadow-sm font-label-caps text-xs font-bold uppercase">
+              <a href="https://wa.me/919392405567?text=Hi%20Manish,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you!" target="_blank" rel="noopener noreferrer" class="shrink-0 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition-all flex items-center gap-1.5 active:scale-95 shadow-sm font-label-caps text-xs font-bold uppercase">
                 <span>WhatsApp</span>
                 <span class="material-symbols-outlined text-[16px]">chat</span>
               </a>
@@ -289,9 +297,9 @@
             </div>
 
             <div class="flex items-center gap-4 pt-1 text-xs font-label-caps uppercase text-primary font-bold">
-              <a href="https://linkedin.com/in/manishbollikonda" target="_blank" class="hover:underline">LinkedIn</a>
+              <a href="https://linkedin.com/in/manishbollikonda" target="_blank" rel="noopener noreferrer" class="hover:underline">LinkedIn</a>
               <span>•</span>
-              <a href="https://github.com/manishbollikonda-318" target="_blank" class="hover:underline">GitHub</a>
+              <a href="https://github.com/manishbollikonda-318" target="_blank" rel="noopener noreferrer" class="hover:underline">GitHub</a>
               <span>•</span>
               <a href="mailto:manishbollikonda@gmail.com" class="hover:underline">Email</a>
             </div>
@@ -301,7 +309,7 @@
 
         <!-- RIGHT COLUMN (lg:col-span-7): Interactive Brief & Project Inquiry Form -->
         <div class="lg:col-span-7 bg-surface-container-low p-6 sm:p-8 rounded-2xl border border-outline/15 shadow-sm">
-          <form class="flex flex-col gap-6" id="inquiryForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+          <form class="flex flex-col gap-6" id="inquiryForm" method="POST" action="javascript:void(0);" autocomplete="off">
             
             <!-- Section 1: Scope & Discipline -->
             <div class="flex flex-col gap-3">
@@ -389,17 +397,17 @@
               <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-1">
                   <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Full Name or Company</span>
-                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientName" placeholder="e.g. Alex Morgan / Stealth AI" required="" type="text"/>
+                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientName" placeholder="e.g. Alex Morgan / Stealth AI" required="" type="text" maxlength="80" autocomplete="name"/>
                 </div>
 
                 <div class="flex flex-col gap-1">
                   <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Email Address</span>
-                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientEmail" placeholder="e.g. alex@company.com" required="" type="email"/>
+                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientEmail" placeholder="e.g. alex@company.com" required="" type="email" maxlength="254" autocomplete="email"/>
                 </div>
 
                 <div class="flex flex-col gap-1">
                   <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Project Details &amp; Objectives</span>
-                  <textarea class="w-full p-4 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all resize-none" id="clientBrief" placeholder="Describe the system, problem context, deliverables, or team requirements..." rows="4"></textarea>
+                  <textarea class="w-full p-4 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all resize-none" id="clientBrief" placeholder="Describe the system, problem context, deliverables, or team requirements..." rows="4" maxlength="2000"></textarea>
                 </div>
               </div>
             </div>
@@ -446,7 +454,7 @@
         <a href="about.html" class="hover:text-primary transition-colors">About</a>
         <a href="veritrust-ai.html" class="hover:text-primary transition-colors">Case Study</a>
         <a href="contact.html" class="text-primary transition-colors">Contact</a>
-        <a href="assets/resume.pdf" target="_blank" class="text-primary hover:underline">Resume (.PDF)</a>
+        <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Resume (.PDF)</a>
       </div>
       <p class="font-label-badge text-xs text-outline">
         © 2026 Manish Bollikonda
@@ -548,29 +556,49 @@
       });
     });
 
-    // Form submission
+    // Anti-tampering & sanitized form submission
     function handleFormSubmit() {
-      const name = document.getElementById('clientName').value.trim();
-      const email = document.getElementById('clientEmail').value.trim();
-      const brief = document.getElementById('clientBrief').value.trim();
+      const rawName = document.getElementById('clientName')?.value || '';
+      const rawEmail = document.getElementById('clientEmail')?.value || '';
+      const rawBrief = document.getElementById('clientBrief')?.value || '';
 
-      const subject = encodeURIComponent(`Project Inquiry: ${name} (${selectedScope})`);
+      // Sanitize against CRLF header injection and bound lengths
+      const cleanName = rawName.replace(/[\r\n\t]/g, ' ').trim().slice(0, 80);
+      const cleanEmail = rawEmail.replace(/[\r\n\t]/g, '').trim().slice(0, 254);
+      const cleanBrief = rawBrief.slice(0, 2000);
+
+      if (!cleanName || !cleanEmail) {
+        alert('Please fill out your name and email before submitting.');
+        return;
+      }
+
+      const subject = encodeURIComponent(`Project Inquiry: ${cleanName} (${selectedScope})`);
       const body = encodeURIComponent(
-        `Hi Manish,\n\nName / Organization: ${name}\nEmail: ${email}\nScope: ${selectedScope}\nTimeline: ${selectedTimeline}\nEngagement Scale: ${selectedBudget}\n\nProject Brief:\n${brief}\n\nLooking forward to hearing from you!`
+        `Hi Manish,\n\nName / Organization: ${cleanName}\nEmail: ${cleanEmail}\nScope: ${selectedScope}\nTimeline: ${selectedTimeline}\nEngagement Scale: ${selectedBudget}\n\nProject Brief:\n${cleanBrief}\n\nLooking forward to hearing from you!`
       );
 
       window.location.href = `mailto:manishbollikonda@gmail.com?subject=${subject}&body=${body}`;
     }
 
-    // Direct WhatsApp prefill
+    const inquiryForm = document.getElementById('inquiryForm');
+    if (inquiryForm) {
+      inquiryForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleFormSubmit();
+      });
+    }
+
+    // Direct WhatsApp prefill with noopener,noreferrer
     function sendViaWhatsApp() {
-      const name = document.getElementById('clientName').value.trim() || 'A Collaborator';
-      const brief = document.getElementById('clientBrief').value.trim() || 'Discuss an upcoming project/system';
+      const rawName = document.getElementById('clientName')?.value || '';
+      const rawBrief = document.getElementById('clientBrief')?.value || '';
+      const cleanName = rawName.replace(/[\r\n\t]/g, ' ').trim().slice(0, 80) || 'A Collaborator';
+      const cleanBrief = rawBrief.slice(0, 1000) || 'Discuss an upcoming project/system';
       
       const text = encodeURIComponent(
-        `Hi Manish, I am ${name}.\nI would like to discuss: ${selectedScope} (${selectedTimeline}, ${selectedBudget}).\n\nBrief: ${brief}`
+        `Hi Manish, I am ${cleanName}.\nI would like to discuss: ${selectedScope} (${selectedTimeline}, ${selectedBudget}).\n\nBrief: ${cleanBrief}`
       );
-      window.open(`https://wa.me/919392405567?text=${text}`, '_blank');
+      window.open(`https://wa.me/919392405567?text=${text}`, '_blank', 'noopener,noreferrer');
     }
   </script>
 </body>

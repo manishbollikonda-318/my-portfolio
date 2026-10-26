@@ -191,6 +191,25 @@ npx vercel --prod
 
 ---
 
+## ✦ Security Hardening & Zero-Vulnerability Architecture
+
+This portfolio has been audited and hardened according to modern cybersecurity, OWASP Top 10, and penetration-testing standards to ensure it is resilient against tampering, exploits, and amateur "vibecoding" bugs:
+
+| Security Vector | Threat Mitigated | Implementation |
+| :--- | :--- | :--- |
+| **Reverse-Tabnabbing** | CWE-1022 / Phishing window hijack via `window.opener` | Strict `rel="noopener noreferrer"` enforced across **all 23 external anchor tags** and `window.open(..., 'noopener,noreferrer')`. |
+| **Content Security Policy (CSP)** | Cross-Site Scripting (XSS), data exfiltration | `default-src 'self'` with explicit whitelist for trusted Tailwind CDN, Google Fonts, and self-hosted assets; `base-uri 'self'`; `form-action 'self' mailto:`. |
+| **Clickjacking Defense** | UI redressing / malicious embedding | `X-Frame-Options: DENY` and `frame-ancestors 'none'` on all routes. |
+| **MIME-Sniffing Defense** | Malicious MIME type execution | `X-Content-Type-Options: nosniff` header across all document heads. |
+| **Referrer Privacy** | Sensitive path leakage to 3rd-party servers | `Referrer-Policy: strict-origin-when-cross-origin`. |
+| **Permissions Policy** | Hardware & sensor snooping | Explicit zero-privilege policy: `camera=(), microphone=(), geolocation=(), payment=()`. |
+| **URL Pollution / History Poisoning** | Query-string PII leakage & broken "Back" button navigation | Forms submit via `POST` (`action="javascript:void(0);"`) with `event.preventDefault()`; anchor jumps use clean `scrollIntoView` without `#hash` pollution. |
+| **CRLF / Mailto Header Injection** | Email header spoofing (`\r\nSubject:`, `\r\ncc:`) | Input sanitization strips carriage returns, line feeds, and tabs before URI-encoding. |
+| **Resource Exhaustion / Buffer Bounds** | Memory bloating & URL length overflow | Mandatory `maxlength` bounds: Name (80 chars), Email (254 chars per RFC 5321), Brief (2000 chars). |
+| **Enumeration & Route Integrity** | Server directory fingerprinting & broken paths | Custom hardened `404.html`, canonical tags on all documents, `robots.txt`, and XML `sitemap.xml`. |
+
+---
+
 ## ✦ Honors & Certifications
 
 - **Winner**, CodeSprint Hackathon (GRIET Internal Software Innovation Sprint)
