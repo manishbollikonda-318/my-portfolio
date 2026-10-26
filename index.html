@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>Manish Bollikonda — AI Developer & Systems Architect</title>
+  <meta name="description" content="Portfolio of Manish Bollikonda: AI Developer, 2nd-Year B.Tech AIML at GRIET. Building real-world AI, LLM hallucination guardrails, and cybersecurity systems."/>
+  <meta name="author" content="Manish Bollikonda"/>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/avatar.jpg"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN with Atelier Whimsy Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#9f3c16",
+            "primary-container": "#bf542c",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffdbcf",
+            "primary-fixed-dim": "#ffb59c",
+            "on-primary-fixed": "#390c00",
+            "on-primary-fixed-variant": "#822801",
+            "background": "#fff9ef",
+            "surface": "#fff9ef",
+            "surface-dim": "#dfd9d1",
+            "surface-bright": "#fff9ef",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f9f3ea",
+            "surface-container": "#f3ede4",
+            "surface-container-high": "#ede7de",
+            "surface-container-highest": "#e7e2d9",
+            "on-surface": "#1d1b16",
+            "on-surface-variant": "#57423b",
+            "outline": "#8a726a",
+            "outline-variant": "#dec0b7",
+            "inverse-surface": "#1b2433",
+            "inverse-on-surface": "#f6f0e7",
+            "secondary": "#565f70",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#d7e0f4",
+            "on-secondary-container": "#5a6374",
+            "secondary-fixed": "#dae3f7",
+            "secondary-fixed-dim": "#bec7db",
+            "on-secondary-fixed": "#131c2a",
+            "tertiary": "#7c5400",
+            "tertiary-container": "#9c6b00",
+            "tertiary-fixed": "#ffdeae",
+            "tertiary-fixed-dim": "#fdba45",
+            "on-tertiary-fixed": "#281900",
+            "on-tertiary-fixed-variant": "#604100"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline-lg": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-md": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-sm": ["'Bricolage Grotesque'", "sans-serif"],
+            "display-hero": ["'Bricolage Grotesque'", "sans-serif"],
+            "body-lg": ["'Work Sans'", "sans-serif"],
+            "body-md": ["'Work Sans'", "sans-serif"],
+            "body-sm": ["'Work Sans'", "sans-serif"],
+            "label-caps": ["'Space Mono'", "monospace"],
+            "label-badge": ["'Space Mono'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #fff9ef;
+        color: #1d1b16;
+        font-family: 'Work Sans', sans-serif;
+      }
+      .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      }
+      .pt-safe {
+        padding-top: max(env(safe-area-inset-top, 0px), 12px);
+      }
+    }
+    
+    /* Sleek Desktop Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff9ef;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dec0b7;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9f3c16;
+    }
+
+    .paper-edge {
+      box-shadow: 2px 2px 0px #1d1b16;
+    }
+    .paper-edge-lg {
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:active {
+      transform: translate(0px, 0px);
+      box-shadow: 1px 1px 0px #1d1b16;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- ==================== HEADER (RESPONSIVE DESKTOP & MOBILE) ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-outline/10 shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe">
+    <div class="max-w-6xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Monogram -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+        <div class="w-10 h-10 rounded-xl bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-sm tracking-wider paper-edge group-hover:rotate-2 transition-transform shrink-0">
+          MB
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-headline-sm text-base sm:text-lg font-bold text-on-surface tracking-tight whitespace-nowrap">Manish Bollikonda</span>
+            <span class="font-label-caps text-[11px] text-primary font-bold hidden lg:inline">• AI Dev</span>
+          </div>
+          <span class="font-label-badge text-[10px] sm:text-[11px] text-on-surface-variant uppercase tracking-wider hidden sm:block whitespace-nowrap">Building Real-World AI &amp; Systems</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (Centered) -->
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-outline/15 shadow-sm">
+        <a href="index.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold bg-primary text-on-primary shadow-sm">Works</a>
+        <a href="about.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">About</a>
+        <a href="veritrust-ai.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Case Study</a>
+        <a href="contact.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Contact</a>
+      </nav>
+      
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="contact.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high/90 text-on-surface hover:bg-surface-container-highest transition-colors">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-label-badge text-[11px] text-on-surface tracking-wider uppercase font-bold">Available</span>
+        </a>
+        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container transition-colors shadow-sm" title="View Resume">
+          <span class="material-symbols-outlined text-[16px] text-tertiary">download</span>
+          <span>Resume</span>
+        </a>
+        <a href="about.html" class="relative p-0.5 rounded-full bg-surface-container hover:scale-105 transition-transform" title="View About Manish">
+          <img alt="Manish Bollikonda" class="w-8 h-8 rounded-full object-cover border border-outline/20 shadow-sm" src="assets/avatar.jpg"/>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 flex flex-col relative w-full pt-28 sm:pt-32 pb-24 md:pb-16 bg-surface">
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+      
+      <!-- ==================== HERO SECTION (RESPONSIVE 2-COL ON DESKTOP) ==================== -->
+      <section class="relative overflow-hidden rounded-3xl bg-surface-container-low p-6 sm:p-10 border border-outline/15 shadow-sm">
+        <!-- Ambient Warm Glows -->
+        <div class="absolute -top-12 -right-10 w-72 h-72 rounded-full bg-primary-fixed-dim/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-36 -left-12 w-64 h-64 rounded-full bg-tertiary-fixed-dim/25 blur-2xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+          
+          <!-- Left Column (lg:col-span-7): Headline & Bio -->
+          <div class="lg:col-span-7 flex flex-col gap-5">
+            
+            <!-- Status & Location Pill Row -->
+            <div class="flex items-center gap-3 flex-wrap">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface shadow-sm border border-outline/10">
+                <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                <span class="font-label-badge text-[11px] uppercase tracking-wider font-bold text-primary">Open for AI Sprints • Global Remote</span>
+              </div>
+              <div class="flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-[11px] font-label-badge">
+                <span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
+                <span>Hyderabad, India • GRIET AIML</span>
+              </div>
+            </div>
+
+            <!-- Main Headline -->
+            <div class="flex flex-col gap-2">
+              <p class="font-label-caps text-xs text-primary uppercase tracking-widest font-bold flex items-center gap-1.5">
+                <span>✦</span> AI Developer &amp; Systems Architect
+              </p>
+              <h1 class="font-headline-lg text-3xl sm:text-4xl lg:text-5xl text-on-surface tracking-tight font-extrabold leading-[1.12]">
+                Hey, I'm <span class="text-primary italic">Manish Bollikonda</span>
+              </h1>
+              <p class="font-body-md text-base sm:text-lg text-on-surface-variant mt-2 leading-relaxed">
+                B.Tech AIML @GRIET | AI Developer | Building Real-World AI &amp; Cybersecurity Systems | Translating complex algorithms into market-ready applications | 📩 Open to internships, collaborations, and AI projects.
+              </p>
+            </div>
+
+            <!-- Primary Action Bar -->
+            <div class="flex items-center gap-3 pt-2 flex-wrap sm:flex-nowrap">
+              <a class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary text-on-primary font-body-md text-sm sm:text-base font-bold paper-edge paper-edge-hover transition-all text-center" href="#projects">
+                <span>Explore Systems</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+              </a>
+              <a href="veritrust-ai.html" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-surface-container-high text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container-highest transition-all shadow-sm">
+                <span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+                <span>Case Study</span>
+              </a>
+              <a href="assets/resume.pdf" target="_blank" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-5 py-3.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold paper-edge paper-edge-hover transition-all border border-outline/15" title="View Resume">
+                <span class="material-symbols-outlined text-[18px] text-tertiary">description</span>
+                <span>Resume (.PDF)</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Column (lg:col-span-5): Aesthetic Portrait Frame & Telemetry -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+            <div class="relative w-full max-w-[340px] sm:max-w-[380px] rounded-2xl overflow-hidden paper-edge-lg border-2 border-outline/20 bg-surface-container-lowest aspect-[4/5] shadow-xl group">
+              <img alt="Manish Bollikonda - AI Developer" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="assets/avatar.jpg"/>
+              
+              <!-- Bottom Overlays -->
+              <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col gap-1.5 text-white">
+                <div class="flex items-center justify-between">
+                  <span class="font-headline-sm text-base font-bold">Manish Bollikonda</span>
+                  <span class="font-label-badge text-[10px] bg-primary px-2 py-0.5 rounded-full font-bold">AIML '29</span>
+                </div>
+                <div class="flex items-center gap-1.5 text-white/80 font-label-badge text-xs">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Active: LangGraph &amp; 0.2ms Guardrails</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== STUDIO METRICS STRIP (4 COLUMNS ON DESKTOP) ==================== -->
+      <section>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-surface-container-low p-5 sm:p-6 rounded-2xl border border-outline/15 shadow-sm">
+          <div class="flex flex-col items-center text-center p-3 bg-surface-container-lowest rounded-xl border border-outline/10 shadow-sm">
+            <span class="font-headline-md text-3xl sm:text-4xl text-primary font-extrabold tracking-tight">25+</span>
+            <span class="font-label-badge text-xs text-on-surface-variant uppercase mt-1 font-bold">Sites Shipped</span>
+          </div>
+          <div class="flex flex-col items-center text-center p-3 bg-surface-container-lowest rounded-xl border border-outline/10 shadow-sm">
+            <span class="font-headline-md text-3xl sm:text-4xl text-tertiary font-extrabold tracking-tight">600+</span>
+            <span class="font-label-badge text-xs text-on-surface-variant uppercase mt-1 font-bold">Problems Solved</span>
+          </div>
+          <div class="flex flex-col items-center text-center p-3 bg-surface-container-lowest rounded-xl border border-outline/10 shadow-sm">
+            <span class="font-headline-md text-3xl sm:text-4xl text-on-surface font-extrabold tracking-tight">0.2ms</span>
+            <span class="font-label-badge text-xs text-on-surface-variant uppercase mt-1 font-bold">Guardrail Latency</span>
+          </div>
+          <div class="flex flex-col items-center text-center p-3 bg-surface-container-lowest rounded-xl border border-outline/10 shadow-sm">
+            <span class="font-headline-md text-3xl sm:text-4xl text-emerald-600 font-extrabold tracking-tight">100%</span>
+            <span class="font-label-badge text-xs text-on-surface-variant uppercase mt-1 font-bold">Deterministic Rigor</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== CURATED FILTER BAR ==================== -->
+      <section class="pt-2" id="projects">
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[24px] text-primary">terminal</span>
+            <h2 class="font-headline-md text-2xl font-bold text-on-surface">Selected Systems &amp; Works</h2>
+          </div>
+          <span class="font-label-badge text-xs text-on-surface-variant uppercase font-mono">Vol. 2025–2026 Production</span>
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-2 overflow-x-auto py-2 no-scrollbar" id="category-filter-bar">
+          <button class="filter-chip active shrink-0 px-4 py-2 rounded-full bg-primary text-on-primary font-label-caps text-xs uppercase transition-all shadow-sm flex items-center gap-1.5 font-bold" data-filter="all">
+            <span>All Works</span>
+            <span class="w-4 h-4 rounded-full bg-on-primary/20 text-on-primary flex items-center justify-center text-[10px]">4</span>
+          </button>
+          <button class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-caps text-xs uppercase transition-all shadow-sm hover:bg-surface-container-high" data-filter="ai-safety">
+            AI Safety &amp; LLMs
+          </button>
+          <button class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-caps text-xs uppercase transition-all shadow-sm hover:bg-surface-container-high" data-filter="security">
+            Cybersecurity
+          </button>
+          <button class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-caps text-xs uppercase transition-all shadow-sm hover:bg-surface-container-high" data-filter="fullstack">
+            Full-Stack Apps
+          </button>
+          <button class="filter-chip shrink-0 px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-caps text-xs uppercase transition-all shadow-sm hover:bg-surface-container-high" data-filter="agrotech">
+            3D &amp; Agro-Tech
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================== PROJECT SHOWCASE BENTO GRID (2 COLUMNS ON DESKTOP) ==================== -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch pb-6" id="project-list">
+        
+        <!-- ========== PLATE 01: VeriTrust AI ========== -->
+        <article class="project-card flex flex-col bg-surface-container-low rounded-2xl overflow-hidden border border-outline/20 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" data-category="ai-safety fullstack">
+          <!-- Architectural Illustration Container -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-inverse-surface p-5 flex flex-col justify-between text-inverse-on-surface select-none">
+            <!-- Background Graphic Grid -->
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#ffdbcf_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="relative z-10 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest/15 backdrop-blur-md border border-white/10 text-white shadow-sm">
+                <span class="text-tertiary-fixed text-xs">✦</span>
+                <span class="font-label-badge text-[10px] font-bold uppercase tracking-wider">Enterprise AI Guardrail</span>
+              </div>
+              <button class="like-btn w-8 h-8 rounded-full bg-surface-container-lowest/15 backdrop-blur-md flex items-center justify-center text-white active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+              </button>
+            </div>
+
+            <!-- Visual Pipeline Blueprint -->
+            <div class="relative z-10 my-auto py-2">
+              <div class="flex items-center justify-between gap-1 text-[11px] font-mono">
+                <div class="bg-white/10 px-2 py-1 rounded border border-white/15 text-white/90">
+                  <span class="text-amber-400">LLM Draft</span>
+                </div>
+                <span class="text-white/40">⟶</span>
+                <div class="bg-primary/80 px-2.5 py-1.5 rounded border border-primary-fixed/40 text-white font-bold text-center">
+                  <span>MAKER-JUDGE</span>
+                  <div class="text-[9px] text-amber-200">Semantic &amp; Math Check</div>
+                </div>
+                <span class="text-white/40">⟶</span>
+                <div class="bg-emerald-900/80 px-2 py-1 rounded border border-emerald-400/30 text-emerald-300 font-bold">
+                  VERDICT: APPROVED
+                </div>
+              </div>
+              <div class="mt-2 text-center text-[10px] font-label-badge text-white/60">
+                0.2ms Arithmetic Validation • Zero-Cost Verification Engine
+              </div>
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between text-[11px] font-label-badge text-white/70">
+              <span class="font-mono">LangGraph • ChromaDB • Gemini API</span>
+              <a href="https://veritrust-ai-gdgoc.onrender.com/chat" target="_blank" class="text-emerald-400 font-bold hover:underline flex items-center gap-1" title="Open VeriTrust AI Live Web App">
+                <span>● Live Web App</span>
+                <span class="material-symbols-outlined text-[13px]">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-caps text-xs uppercase text-primary font-bold">AI Safety &amp; LLM Infra</span>
+                  <span class="text-on-surface-variant text-xs">•</span>
+                  <span class="font-label-caps text-xs uppercase text-on-surface-variant font-mono">2026</span>
+                </div>
+                <span class="font-label-badge text-[11px] px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">Flagship Plate</span>
+              </div>
+
+              <h3 class="font-headline-sm text-xl font-bold text-on-surface">VeriTrust AI: Enterprise Hallucination Guardrail</h3>
+              <p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                Real-time Maker-Judge guardrail that intercepts customer-support LLM answers and delivers Approved, Corrected, or Blocked verdicts. Deconstructs responses into atomic claims, verifies semantic entailment against ChromaDB policy chunks, and runs a 0.2ms deterministic arithmetic engine.
+              </p>
+
+              <!-- Tech Pills -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">FastAPI</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">LangGraph</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">ChromaDB</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">React + TS</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Tailwind CSS</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-outline/10 flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <a href="https://veritrust-ai-gdgoc.onrender.com/chat" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-on-primary text-xs font-label-caps uppercase font-bold paper-edge paper-edge-hover transition-all shadow-sm" title="Launch VeriTrust AI Live Web App">
+                  <span class="material-symbols-outlined text-[15px]">launch</span>
+                  <span>Live App</span>
+                </a>
+                <a href="https://github.com/manishbollikonda-318" target="_blank" class="text-on-surface-variant hover:text-on-surface text-xs font-label-caps uppercase flex items-center gap-1 font-bold px-2.5 py-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                  <span class="material-symbols-outlined text-[15px]">code</span>
+                  <span>GitHub</span>
+                </a>
+              </div>
+              <a href="veritrust-ai.html" class="inline-flex items-center gap-1 text-primary font-body-sm text-sm font-bold hover:translate-x-1 transition-transform">
+                <span>Case Study</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========== PLATE 02: AuraGuard ========== -->
+        <article class="project-card flex flex-col bg-surface-container-low rounded-2xl overflow-hidden border border-outline/20 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" data-category="security">
+          <!-- Architectural Illustration Container -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-[#121820] p-5 flex flex-col justify-between text-inverse-on-surface select-none">
+            <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_14px]"></div>
+            
+            <div class="relative z-10 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white shadow-sm">
+                <span class="text-amber-400 text-xs">🔒</span>
+                <span class="font-label-badge text-[10px] font-bold uppercase tracking-wider">Adaptive Cryptography</span>
+              </div>
+              <button class="like-btn w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+              </button>
+            </div>
+
+            <div class="relative z-10 my-auto py-2">
+              <div class="bg-black/40 border border-white/10 rounded-lg p-2.5 font-mono text-[11px] text-emerald-400 flex flex-col gap-1">
+                <div class="flex justify-between text-white/50 text-[10px]">
+                  <span>NLP RISK VECTOR: ELEVATED (0.87)</span>
+                  <span>CIPHER: AES-256-GCM</span>
+                </div>
+                <div class="truncate text-white/80">Input: "Critical duress detected in payload context..."</div>
+                <div class="truncate text-amber-300">Entropy Payload: 0x9F3C16...A4E8 (Sub-second cycle)</div>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between text-[11px] font-label-badge text-white/70">
+              <span class="font-mono">Python • Flask • NLP Sentiment • AES-256</span>
+              <span class="text-tertiary-fixed font-bold">Mar 2026</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-caps text-xs uppercase text-tertiary-container font-bold">Cybersecurity &amp; AI</span>
+                  <span class="text-on-surface-variant text-xs">•</span>
+                  <span class="font-label-caps text-xs uppercase text-on-surface-variant font-mono">Mar 2026</span>
+                </div>
+                <span class="font-label-badge text-[11px] px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">Sub-Second Pipeline</span>
+              </div>
+
+              <h3 class="font-headline-sm text-xl font-bold text-on-surface">AuraGuard: Emotion-Aware Encryption Engine</h3>
+              <p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                Engineered a context-adaptive NLP security system that detects emotional risk and duress in text in real-time, dynamically configuring AES-256 cryptographic behavior and key exchange constraints.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Python</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Flask</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">NLP Sentiment</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">AES-256</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-outline/10">
+              <span class="font-label-badge text-xs text-on-surface-variant uppercase font-mono">Cryptographic Pipeline</span>
+              <a href="https://github.com/manishbollikonda-318" target="_blank" class="inline-flex items-center gap-1 text-primary font-body-sm text-sm font-bold hover:translate-x-1 transition-transform">
+                <span>View on GitHub</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========== PLATE 03: AICROP-DETECTOR ========== -->
+        <article class="project-card flex flex-col bg-surface-container-low rounded-2xl overflow-hidden border border-outline/20 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" data-category="agrotech fullstack">
+          <!-- Architectural Illustration Container -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-[#16221c] p-5 flex flex-col justify-between text-inverse-on-surface select-none">
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#86efac_1px,transparent_1px)] [background-size:18px_18px]"></div>
+            
+            <div class="relative z-10 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white shadow-sm">
+                <span class="text-emerald-400 text-xs">🌱</span>
+                <span class="font-label-badge text-[10px] font-bold uppercase tracking-wider">Smart Agro-Tech &amp; 3D</span>
+              </div>
+              <button class="like-btn w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+              </button>
+            </div>
+
+            <div class="relative z-10 my-auto py-2">
+              <div class="bg-black/30 border border-emerald-500/20 rounded-lg p-2.5 font-mono text-[11px] flex items-center justify-between text-emerald-300">
+                <div>
+                  <div class="text-[10px] text-white/50">NEURAL LEAF DIAGNOSIS</div>
+                  <div class="font-bold">Plant Doctor: 98.2% Confidence</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-[10px] text-white/50">RENDER PIPELINE</div>
+                  <div class="text-amber-300">Three.js + R3F + GSAP</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between text-[11px] font-label-badge text-white/70">
+              <span class="font-mono">React • Vite • Three.js • Zustand</span>
+              <span class="text-emerald-400 font-bold">GitHub Actions CI/CD</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-caps text-xs uppercase text-primary font-bold">Agro-Tech &amp; 3D UI</span>
+                  <span class="text-on-surface-variant text-xs">•</span>
+                  <span class="font-label-caps text-xs uppercase text-on-surface-variant font-mono">2026</span>
+                </div>
+                <span class="font-label-badge text-[11px] px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">Interactive 3D</span>
+              </div>
+
+              <h3 class="font-headline-sm text-xl font-bold text-on-surface">AICROP-DETECTOR: AI Smart Farming Platform</h3>
+              <p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                Architected an AI Plant Doctor for instant disease diagnosis, optimizing crop recommendations and season planning through integrated cost calculators. Features an interactive 3D animated interface built with React Three Fiber, Framer Motion, and GSAP.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">React</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Three.js / R3F</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Zustand</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Tailwind CSS</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-outline/10">
+              <div class="flex items-center gap-1 text-on-surface-variant text-xs font-label-badge">
+                <span class="material-symbols-outlined text-[16px] text-tertiary">view_in_ar</span>
+                <span>3D Canvas Experience</span>
+              </div>
+              <a href="https://github.com/manishbollikonda-318" target="_blank" class="inline-flex items-center gap-1 text-primary font-body-sm text-sm font-bold hover:translate-x-1 transition-transform">
+                <span>Explore Code &amp; Demo</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ========== PLATE 04: OrgVault ========== -->
+        <article class="project-card flex flex-col bg-surface-container-low rounded-2xl overflow-hidden border border-outline/20 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" data-category="fullstack">
+          <!-- Architectural Illustration Container -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-[#1e1b24] p-5 flex flex-col justify-between text-inverse-on-surface select-none">
+            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#c084fc_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="relative z-10 flex items-center justify-between">
+              <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-white shadow-sm">
+                <span class="text-purple-300 text-xs">🏛️</span>
+                <span class="font-label-badge text-[10px] font-bold uppercase tracking-wider">CSI GRIET Operations</span>
+              </div>
+              <button class="like-btn w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[18px]">favorite</span>
+              </button>
+            </div>
+
+            <div class="relative z-10 my-auto py-2">
+              <div class="bg-black/35 border border-purple-400/20 rounded-lg p-2.5 font-mono text-[11px] text-purple-200 flex flex-col gap-1">
+                <div class="flex justify-between text-white/50 text-[10px]">
+                  <span>ROLE-BASED KNOWLEDGE HUB</span>
+                  <span>NODE.JS + MONGODB</span>
+                </div>
+                <div class="truncate">Role Matrix: Admin • Corporate Leads • Technical Core</div>
+                <div class="text-[10px] text-purple-300">Pitched &amp; deployed to Computer Society of India leadership</div>
+              </div>
+            </div>
+
+            <div class="relative z-10 flex items-center justify-between text-[11px] font-label-badge text-white/70">
+              <span class="font-mono">React • Node.js • Express • MongoDB</span>
+              <span class="text-purple-300 font-bold">Internal Ecosystem</span>
+            </div>
+          </div>
+
+          <div class="p-6 flex flex-col justify-between flex-1 gap-4">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-label-caps text-xs uppercase text-tertiary font-bold">Enterprise &amp; Operations</span>
+                  <span class="text-on-surface-variant text-xs">•</span>
+                  <span class="font-label-caps text-xs uppercase text-on-surface-variant font-mono">Present</span>
+                </div>
+                <span class="font-label-badge text-[11px] px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-medium">RBAC Security</span>
+              </div>
+
+              <h3 class="font-headline-sm text-xl font-bold text-on-surface">OrgVault: Role-Based Knowledge Platform</h3>
+              <p class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                Designed a role-based knowledge and resource hub to streamline operations for the Computer Society of India (CSI), GRIET. Pitched and delivered to CSI leadership to manage corporate initiatives and society-wide workflows.
+              </p>
+
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">React</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">Node.js</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">MongoDB</span>
+                <span class="px-2.5 py-1 rounded-md bg-surface-container text-xs font-mono text-on-surface-variant font-medium">JWT Auth</span>
+              </div>
+            </div>
+
+            <div class="pt-4 flex items-center justify-between border-t border-outline/10">
+              <span class="font-label-badge text-xs text-on-surface-variant uppercase font-mono">CSI GRIET Core</span>
+              <a href="about.html" class="inline-flex items-center gap-1 text-primary font-body-sm text-sm font-bold hover:translate-x-1 transition-transform">
+                <span>View in Experience</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- ==================== ENGINEERING PHILOSOPHY BANNER ==================== -->
+      <section class="pb-6">
+        <div class="bg-inverse-surface text-inverse-on-surface p-6 sm:p-8 rounded-2xl flex flex-col gap-4 relative overflow-hidden paper-edge">
+          <div class="absolute -right-8 -bottom-8 w-64 h-64 rounded-full bg-primary-container/20 blur-2xl pointer-events-none"></div>
+          
+          <div class="flex items-center gap-2 text-primary-fixed-dim">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="font-label-caps text-xs uppercase font-bold tracking-widest">Engineering Tenet</span>
+          </div>
+
+          <h3 class="font-headline-sm text-xl sm:text-2xl text-inverse-on-surface leading-snug font-bold">
+            "Deterministic rigor where security matters, probabilistic intelligence where creativity thrives."
+          </h3>
+
+          <p class="font-body-sm text-sm sm:text-base text-inverse-on-surface/80 leading-relaxed max-w-4xl">
+            LLMs are brilliant at conversational breadth, but dangerous when entrusted with raw numbers or unfiltered outputs. I build architectures that constrain probabilistic AI with sub-millisecond deterministic safety code.
+          </p>
+
+          <div class="pt-3 flex items-center justify-between border-t border-white/10 flex-wrap gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+              <span class="font-label-badge text-xs text-inverse-on-surface/70 uppercase">Zero-Cost Math Checks • AES-256 Dynamic Ciphers</span>
+            </div>
+            <a href="about.html" class="font-label-caps text-xs uppercase text-primary-fixed font-bold tracking-wider hover:underline flex items-center gap-1.5">
+              <span>Read Full Manifesto</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==================== DESKTOP FOOTER ==================== -->
+  <footer class="mt-auto border-t border-outline/15 bg-surface-container-low/80 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-xs paper-edge">
+          MB
+        </div>
+        <div>
+          <span class="font-headline-sm text-sm font-bold text-on-surface">Manish Bollikonda</span>
+          <p class="font-body-sm text-xs text-on-surface-variant">B.Tech AIML @ GRIET • Hyderabad, India</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 font-label-caps text-xs uppercase font-bold text-on-surface-variant">
+        <a href="index.html" class="text-primary transition-colors">Works</a>
+        <a href="about.html" class="hover:text-primary transition-colors">About</a>
+        <a href="veritrust-ai.html" class="hover:text-primary transition-colors">Case Study</a>
+        <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        <a href="assets/resume.pdf" target="_blank" class="text-primary hover:underline">Resume (.PDF)</a>
+      </div>
+      <p class="font-label-badge text-xs text-outline">
+        © 2026 Manish Bollikonda
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== FIXED BOTTOM NAVIGATION (MOBILE ONLY) ==================== -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none px-4 pb-3 md:hidden" aria-label="Mobile Bottom Navigation">
+    <div class="mx-auto max-w-md w-full bg-surface-container-lowest/95 backdrop-blur-xl rounded-full p-1.5 border border-outline/20 shadow-[0_4px_20px_rgba(29,27,22,0.12)] pointer-events-auto flex items-center justify-between gap-1">
+      <a aria-current="page" class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full transition-all bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1d1b16]" href="index.html">
+        <span class="material-symbols-outlined text-[19px]">palette</span>
+        <span class="font-label-caps text-xs uppercase">Works</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="about.html">
+        <span class="material-symbols-outlined text-[19px]">person</span>
+        <span class="font-label-caps text-xs uppercase">About</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="veritrust-ai.html">
+        <span class="material-symbols-outlined text-[19px]">verified_user</span>
+        <span class="font-label-caps text-xs uppercase">Case Study</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="contact.html">
+        <span class="material-symbols-outlined text-[19px]">mail</span>
+        <span class="font-label-caps text-xs uppercase">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Category filter interactions
+      const filterButtons = document.querySelectorAll('.filter-chip');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterButtons.forEach(b => {
+            b.classList.remove('active', 'bg-primary', 'text-on-primary', 'font-bold');
+            b.classList.add('bg-surface-container', 'text-on-surface');
+          });
+          btn.classList.add('active', 'bg-primary', 'text-on-primary', 'font-bold');
+          btn.classList.remove('bg-surface-container', 'text-on-surface');
+
+          const category = btn.getAttribute('data-filter');
+
+          projectCards.forEach(card => {
+            const cardCat = card.getAttribute('data-category') || '';
+            if (category === 'all' || cardCat.includes(category)) {
+              card.style.display = 'flex';
+              card.style.opacity = '1';
+            } else {
+              card.style.display = 'none';
+              card.style.opacity = '0';
+            }
+          });
+        });
+      });
+
+      // Like micro-toggle
+      const likeButtons = document.querySelectorAll('.like-btn');
+      likeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const icon = button.querySelector('.material-symbols-outlined');
+          if (icon.classList.contains('text-red-500')) {
+            icon.classList.remove('text-red-500');
+            icon.style.fontVariationSettings = "'FILL' 0";
+          } else {
+            icon.classList.add('text-red-500');
+            icon.style.fontVariationSettings = "'FILL' 1";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

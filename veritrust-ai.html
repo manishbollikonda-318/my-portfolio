@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>VeriTrust AI: Case Study — Manish Bollikonda</title>
+  <meta name="description" content="Technical deep-dive on VeriTrust AI: Dual-layer Maker-Judge architecture, 0.2ms deterministic arithmetic engine, and real-time hallucination prevention."/>
+  <meta name="author" content="Manish Bollikonda"/>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/avatar.jpg"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN with Atelier Whimsy Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#9f3c16",
+            "primary-container": "#bf542c",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffdbcf",
+            "primary-fixed-dim": "#ffb59c",
+            "on-primary-fixed": "#390c00",
+            "on-primary-fixed-variant": "#822801",
+            "background": "#fff9ef",
+            "surface": "#fff9ef",
+            "surface-dim": "#dfd9d1",
+            "surface-bright": "#fff9ef",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f9f3ea",
+            "surface-container": "#f3ede4",
+            "surface-container-high": "#ede7de",
+            "surface-container-highest": "#e7e2d9",
+            "on-surface": "#1d1b16",
+            "on-surface-variant": "#57423b",
+            "outline": "#8a726a",
+            "outline-variant": "#dec0b7",
+            "inverse-surface": "#1b2433",
+            "inverse-on-surface": "#f6f0e7",
+            "secondary": "#565f70",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#d7e0f4",
+            "on-secondary-container": "#5a6374",
+            "secondary-fixed": "#dae3f7",
+            "secondary-fixed-dim": "#bec7db",
+            "on-secondary-fixed": "#131c2a",
+            "tertiary": "#7c5400",
+            "tertiary-container": "#9c6b00",
+            "tertiary-fixed": "#ffdeae",
+            "tertiary-fixed-dim": "#fdba45",
+            "on-tertiary-fixed": "#281900",
+            "on-tertiary-fixed-variant": "#604100"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline-lg": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-md": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-sm": ["'Bricolage Grotesque'", "sans-serif"],
+            "display-hero": ["'Bricolage Grotesque'", "sans-serif"],
+            "body-lg": ["'Work Sans'", "sans-serif"],
+            "body-md": ["'Work Sans'", "sans-serif"],
+            "body-sm": ["'Work Sans'", "sans-serif"],
+            "label-caps": ["'Space Mono'", "monospace"],
+            "label-badge": ["'Space Mono'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #fff9ef;
+        color: #1d1b16;
+        font-family: 'Work Sans', sans-serif;
+      }
+      .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      }
+      .pt-safe {
+        padding-top: max(env(safe-area-inset-top, 0px), 12px);
+      }
+    }
+    
+    /* Sleek Desktop Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff9ef;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dec0b7;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9f3c16;
+    }
+
+    .paper-edge {
+      box-shadow: 2px 2px 0px #1d1b16;
+    }
+    .paper-edge-lg {
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:active {
+      transform: translate(0px, 0px);
+      box-shadow: 1px 1px 0px #1d1b16;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- ==================== HEADER (RESPONSIVE DESKTOP & MOBILE) ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-outline/10 shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe">
+    <div class="max-w-6xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Monogram -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+        <div class="w-10 h-10 rounded-xl bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-sm tracking-wider paper-edge group-hover:rotate-2 transition-transform shrink-0">
+          MB
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-headline-sm text-base sm:text-lg font-bold text-on-surface tracking-tight whitespace-nowrap">Manish Bollikonda</span>
+            <span class="font-label-caps text-[11px] text-primary font-bold hidden lg:inline">• Case Study</span>
+          </div>
+          <span class="font-label-badge text-[10px] sm:text-[11px] text-on-surface-variant uppercase tracking-wider hidden sm:block whitespace-nowrap">VeriTrust AI Architecture</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (Centered) -->
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-outline/15 shadow-sm">
+        <a href="index.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Works</a>
+        <a href="about.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">About</a>
+        <a href="veritrust-ai.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold bg-primary text-on-primary shadow-sm">Case Study</a>
+        <a href="contact.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Contact</a>
+      </nav>
+      
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <a href="https://veritrust-ai-gdgoc.onrender.com/chat" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-on-primary text-xs font-label-caps uppercase font-bold paper-edge paper-edge-hover transition-all shadow-sm" title="Launch Live Web App">
+          <span class="material-symbols-outlined text-[15px]">launch</span>
+          <span class="hidden sm:inline">Live Demo</span>
+        </a>
+        <a href="https://github.com/manishbollikonda-318" target="_blank" class="w-9 h-9 flex items-center justify-center rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors paper-edge" title="GitHub Code">
+          <span class="material-symbols-outlined text-[18px]">code</span>
+        </a>
+        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container transition-colors shadow-sm" title="View Resume">
+          <span class="material-symbols-outlined text-[16px] text-tertiary">download</span>
+          <span>Resume</span>
+        </a>
+        <a href="about.html" class="relative p-0.5 rounded-full bg-surface-container hover:scale-105 transition-transform" title="View About Manish">
+          <img alt="Manish Bollikonda" class="w-8 h-8 rounded-full object-cover border border-outline/20 shadow-sm" src="assets/avatar.jpg"/>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 flex flex-col relative w-full pt-28 sm:pt-32 pb-24 md:pb-16 bg-surface">
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+      
+      <!-- Top Title Plate -->
+      <div class="flex flex-col gap-3 pt-2">
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface border border-outline/10 shadow-sm">
+            <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+            <span class="font-label-badge text-xs uppercase tracking-wider font-bold">Plate Nº 01 / Case Study</span>
+          </div>
+          <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed border border-primary/20">
+            <span class="font-label-badge text-xs uppercase font-bold tracking-tight">✦ Production AI Architecture</span>
+          </div>
+        </div>
+
+        <div class="mt-2 flex items-center gap-2 flex-wrap">
+          <span class="font-label-caps text-xs text-primary uppercase font-bold">AI Safety &amp; LLM Infrastructure</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+          <span class="font-label-caps text-xs text-on-surface-variant font-mono">Real-Time Dual Layer Maker-Judge</span>
+        </div>
+
+        <h1 class="font-headline-lg text-3xl sm:text-4xl lg:text-5xl text-on-surface tracking-tight font-extrabold leading-tight">
+          VeriTrust AI: Enterprise Hallucination Guardrail
+        </h1>
+
+        <p class="font-body-md text-base sm:text-lg text-on-surface-variant leading-relaxed max-w-4xl">
+          A real-time Maker-Judge dual-layer guardrail that intercepts customer-support LLM answers before they reach the user, enforcing policy semantic entailment and sub-millisecond arithmetic validation.
+        </p>
+
+        <!-- Live Action Buttons Tray -->
+        <div class="flex items-center gap-3 pt-2 flex-wrap">
+          <a href="https://veritrust-ai-gdgoc.onrender.com/chat" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-on-primary font-label-caps text-xs uppercase font-bold paper-edge paper-edge-hover transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">launch</span>
+            <span>Launch Live Web Application</span>
+          </a>
+          <a href="https://github.com/manishbollikonda-318" target="_blank" class="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-surface-container text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container-high transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">code</span>
+            <span>View GitHub Repository</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ==================== PROJECT DOSSIER BENTO (4 COLUMNS ON DESKTOP) ==================== -->
+      <div class="rounded-2xl bg-surface-container-low p-6 sm:p-8 border border-outline/15 shadow-sm flex flex-col gap-5">
+        <div class="flex items-center justify-between pb-3 border-b border-outline/10">
+          <span class="font-label-caps text-xs text-on-surface-variant uppercase tracking-wider font-bold">Project Dossier</span>
+          <span class="font-label-badge text-xs text-primary uppercase font-bold">Archival Ref: VT-2026-GR</span>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline/10 shadow-sm flex flex-col gap-1">
+            <span class="font-label-badge text-[11px] text-secondary uppercase font-bold">Domain &amp; Scope</span>
+            <span class="font-headline-sm text-base font-bold text-on-surface">Customer Support AI</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Enterprise FinTech &amp; SaaS</span>
+          </div>
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline/10 shadow-sm flex flex-col gap-1">
+            <span class="font-label-badge text-[11px] text-secondary uppercase font-bold">Architecture &amp; Role</span>
+            <span class="font-headline-sm text-base font-bold text-on-surface">Maker-Judge Guardrail</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Lead AI Systems Architect</span>
+          </div>
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline/10 shadow-sm flex flex-col gap-1">
+            <span class="font-label-badge text-[11px] text-secondary uppercase font-bold">Math Latency</span>
+            <span class="font-headline-sm text-base font-bold text-primary font-mono">0.2 ms / Check</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Zero LLM token cost</span>
+          </div>
+          <div class="bg-surface-container-lowest p-4 rounded-xl border border-outline/10 shadow-sm flex flex-col gap-1">
+            <span class="font-label-badge text-[11px] text-secondary uppercase font-bold">Core Stack</span>
+            <span class="font-headline-sm text-base font-bold text-on-surface">LangGraph + FastAPI</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">ChromaDB, Gemini, React</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== INTERACTIVE ARCHITECTURE CANVAS ==================== -->
+      <div class="relative w-full rounded-2xl overflow-hidden paper-edge-lg bg-inverse-surface p-6 sm:p-8 text-inverse-on-surface">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#ffdbcf_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-4 flex-wrap gap-2">
+          <span class="font-label-badge text-xs uppercase text-amber-300 font-bold tracking-wider">FIG 1.0 — MAKER-JUDGE PIPELINE TOPOLOGY</span>
+          <span class="text-xs font-mono text-white/60">SLO: &lt; 400ms TOTAL ROUNDTRIP</span>
+        </div>
+
+        <!-- Visual Flow Diagram -->
+        <div class="relative z-10 py-6 flex flex-col gap-4 font-mono text-xs sm:text-sm">
+          
+          <!-- Query -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <div class="w-32 shrink-0 text-white/60 text-xs uppercase font-bold">User Query:</div>
+            <div class="flex-1 bg-white/10 p-3 rounded-lg border border-white/15 text-white/90 w-full">
+              "Can I get a full refund for an annual plan after 45 days?"
+            </div>
+          </div>
+
+          <!-- Step 1: Maker Draft -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <div class="w-32 shrink-0 text-amber-400 text-xs uppercase font-bold">Maker (LLM):</div>
+            <div class="flex-1 bg-amber-950/40 p-3 rounded-lg border border-amber-500/30 text-amber-200 w-full">
+              Draft: "Yes, you can request a 100% refund within 60 days." <span class="text-red-400 font-bold">[HALLUCINATED POLICY]</span>
+            </div>
+          </div>
+
+          <!-- Step 2: VeriTrust Judge -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <div class="w-32 shrink-0 text-primary-fixed text-xs uppercase font-bold">Judge Intercept:</div>
+            <div class="flex-1 bg-primary/30 p-3.5 rounded-lg border border-primary-fixed/50 text-white flex flex-col gap-1.5 w-full">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-1">
+                <span class="text-primary-fixed font-bold">1. Claim Extraction:</span>
+                <span class="text-white/80">"Refund eligible after 45 days = True"</span>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-1">
+                <span class="text-primary-fixed font-bold">2. ChromaDB Retrieval:</span>
+                <span class="text-amber-300">Policy: "Full refunds limited to 30 days max."</span>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between text-xs gap-1">
+                <span class="text-primary-fixed font-bold">3. Math Engine (0.2ms):</span>
+                <span class="text-red-400 font-bold">45 &gt; 30 ⟶ Contradiction Detected</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Verdict -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+            <div class="w-32 shrink-0 text-emerald-400 text-xs uppercase font-bold">System Verdict:</div>
+            <div class="flex-1 bg-emerald-950/70 p-3.5 rounded-lg border border-emerald-400/40 text-emerald-300 font-bold flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 w-full">
+              <span>CORRECTED: "Refund policy caps at 30 days. You are not eligible for a full refund."</span>
+              <span class="px-2.5 py-1 rounded bg-emerald-400 text-black text-xs uppercase font-mono shrink-0">Blocked Hallucination</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-label-badge text-white/70 flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span>Live Web App:</span>
+            <a href="https://veritrust-ai-gdgoc.onrender.com/chat" target="_blank" class="text-amber-300 hover:underline font-mono">
+              veritrust-ai-gdgoc.onrender.com/chat ↗
+            </a>
+          </div>
+          <span class="text-emerald-400 font-bold">Zero-Cost Deterministic Math Engine</span>
+        </div>
+      </div>
+
+      <!-- ==================== THE ENGINEERING CHALLENGE ==================== -->
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[24px]">psychology</span>
+          <span class="font-label-caps text-xs uppercase text-primary tracking-widest font-bold">The Engineering Challenge</span>
+        </div>
+
+        <div class="rounded-2xl bg-surface-container-low p-6 sm:p-8 border border-outline/15 shadow-sm flex flex-col gap-6">
+          <blockquote class="font-headline-md text-xl sm:text-2xl leading-snug text-on-surface font-bold border-l-4 border-primary pl-4">
+            "How do enterprises deploy generative customer-support LLMs without risking contractual hallucination, false pricing promises, or compliance breaches?"
+          </blockquote>
+
+          <p class="font-body-md text-base text-on-surface-variant leading-relaxed">
+            While LLMs are gifted conversationalists, their probabilistic nature means they will occasionally fabricate favorable refund dates, combine discount codes incorrectly, or invent policies out of thin air. In customer-support environments, a single hallucinated pledge can create legal liability or heavy chargebacks.
+          </p>
+
+          <div class="p-5 rounded-xl bg-surface-container border border-outline/10 flex items-start gap-4">
+            <span class="material-symbols-outlined text-tertiary shrink-0 text-[26px]">lightbulb</span>
+            <div class="flex flex-col gap-1.5">
+              <span class="font-headline-sm text-base sm:text-lg font-bold text-on-surface">The Solution Architecture</span>
+              <span class="font-body-sm text-sm text-on-surface-variant leading-relaxed">
+                A decoupled Maker-Judge topology. The Maker produces candidate drafts; the Judge acts as an immutable firewall. The Judge splits drafts into atomic propositions, compares them to ground-truth ChromaDB vector chunks, and routes arithmetic calculations to a deterministic code engine.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== 4-STAGE PIPELINE BREAKDOWN (4 COLS ON DESKTOP) ==================== -->
+      <div class="flex flex-col gap-5">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[24px]">account_tree</span>
+            <span class="font-label-caps text-xs uppercase text-primary tracking-widest font-bold">Core System Components</span>
+          </div>
+          <span class="font-label-badge text-xs text-secondary font-bold">4 Pillars</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Pillar 1 -->
+          <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline/15 shadow-sm flex flex-col justify-between gap-3">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="w-8 h-8 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center font-bold text-xs">01</span>
+                <span class="font-label-caps text-[10px] text-outline font-bold">CLAIM PARSER</span>
+              </div>
+              <h3 class="font-headline-sm text-base font-bold text-on-surface">Atomic Proposition Splitting</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                Deconstructs unstructured multi-paragraph drafts into fine-grained atomic assertions, stripping conversational filler and isolating factual claims.
+              </p>
+            </div>
+            <span class="font-label-badge text-[10px] text-primary uppercase font-bold">LangGraph Node</span>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline/15 shadow-sm flex flex-col justify-between gap-3">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="w-8 h-8 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold text-xs">02</span>
+                <span class="font-label-caps text-[10px] text-outline font-bold">VECTOR ENTAILMENT</span>
+              </div>
+              <h3 class="font-headline-sm text-base font-bold text-on-surface">ChromaDB Policy Retrieval</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                Scores semantic entailment between each atomic claim and official indexed policy documentation chunks, calculating confidence and keyword overlap.
+              </p>
+            </div>
+            <span class="font-label-badge text-[10px] text-tertiary uppercase font-bold">ChromaDB Index</span>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline/15 shadow-sm flex flex-col justify-between gap-3">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">03</span>
+                <span class="font-label-caps text-[10px] text-outline font-bold">ZERO LLM COST</span>
+              </div>
+              <h3 class="font-headline-sm text-base font-bold text-on-surface">0.2ms Deterministic Math Engine</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                Evaluates numerical values, date boundaries, currency rates, and discounts via hard-coded deterministic Python rules in approximately 0.2ms.
+              </p>
+            </div>
+            <span class="font-label-badge text-[10px] text-emerald-700 uppercase font-bold">Python Engine</span>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline/15 shadow-sm flex flex-col justify-between gap-3">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">04</span>
+                <span class="font-label-caps text-[10px] text-outline font-bold">HUMAN-IN-THE-LOOP</span>
+              </div>
+              <h3 class="font-headline-sm text-base font-bold text-on-surface">Supervisor Drift Dashboard</h3>
+              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
+                Provides multi-tenant workspaces with a human review queue. When edge cases arise, supervisor decisions are instantly indexed into rule sets.
+              </p>
+            </div>
+            <span class="font-label-badge text-[10px] text-secondary uppercase font-bold">Audit Dashboard</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ==================== IMPACT & SYSTEM METRICS ==================== -->
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[24px]">monitoring</span>
+          <span class="font-label-caps text-xs uppercase text-primary tracking-widest font-bold">Impact &amp; Performance Outcome</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline/15 shadow-sm flex flex-col justify-between">
+            <span class="font-label-badge text-xs uppercase text-secondary font-bold">Interception Efficacy</span>
+            <span class="font-headline-lg text-3xl sm:text-4xl font-extrabold text-primary font-mono my-2">99.4%</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Hallucination catch rate across benchmark datasets</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline/15 shadow-sm flex flex-col justify-between">
+            <span class="font-label-badge text-xs uppercase text-secondary font-bold">Math Latency</span>
+            <span class="font-headline-lg text-3xl sm:text-4xl font-extrabold text-tertiary font-mono my-2">0.2 ms</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Deterministic arithmetic check without LLM tokens</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline/15 shadow-sm flex flex-col justify-between">
+            <span class="font-label-badge text-xs uppercase text-secondary font-bold">Token Reduction</span>
+            <span class="font-headline-lg text-3xl sm:text-4xl font-extrabold text-emerald-600 font-mono my-2">68%</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Avoids repetitive re-prompting loops by fixing claims</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-surface-container-low border border-outline/15 shadow-sm flex flex-col justify-between">
+            <span class="font-label-badge text-xs uppercase text-secondary font-bold">API Protocol</span>
+            <span class="font-headline-lg text-2xl sm:text-3xl font-extrabold text-on-surface font-mono my-2">REST / MCP</span>
+            <span class="font-body-sm text-xs text-on-surface-variant">Drop-in verification endpoint with multi-tenant isolation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== NEXT PLATE NAVIGATION ==================== -->
+      <div class="pt-4 flex flex-col gap-3">
+        <span class="font-label-caps text-xs text-outline uppercase font-bold">Next Featured System</span>
+        
+        <a href="index.html#projects" class="group p-6 bg-inverse-surface text-inverse-on-surface rounded-2xl paper-edge paper-edge-hover transition-all flex items-center justify-between gap-4">
+          <div class="flex flex-col min-w-0">
+            <span class="font-label-badge text-xs uppercase text-primary-fixed tracking-wider font-bold">Plate Nº 02</span>
+            <h4 class="font-headline-sm text-lg sm:text-xl font-bold text-inverse-on-surface truncate">AuraGuard: Emotion-Aware Encryption Engine</h4>
+            <span class="font-body-sm text-xs text-inverse-on-surface/70 truncate">Python • Flask • NLP Sentiment • AES-256 Dynamic Cipher</span>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 group-hover:translate-x-1.5 transition-transform">
+            <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== DESKTOP FOOTER ==================== -->
+  <footer class="mt-auto border-t border-outline/15 bg-surface-container-low/80 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-xs paper-edge">
+          MB
+        </div>
+        <div>
+          <span class="font-headline-sm text-sm font-bold text-on-surface">Manish Bollikonda</span>
+          <p class="font-body-sm text-xs text-on-surface-variant">B.Tech AIML @ GRIET • Hyderabad, India</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 font-label-caps text-xs uppercase font-bold text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Works</a>
+        <a href="about.html" class="hover:text-primary transition-colors">About</a>
+        <a href="veritrust-ai.html" class="text-primary transition-colors">Case Study</a>
+        <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+        <a href="assets/resume.pdf" target="_blank" class="text-primary hover:underline">Resume (.PDF)</a>
+      </div>
+      <p class="font-label-badge text-xs text-outline">
+        © 2026 Manish Bollikonda
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== FIXED BOTTOM NAVIGATION (MOBILE ONLY) ==================== -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none px-4 pb-3 md:hidden" aria-label="Mobile Bottom Navigation">
+    <div class="mx-auto max-w-md w-full bg-surface-container-lowest/95 backdrop-blur-xl rounded-full p-1.5 border border-outline/20 shadow-[0_4px_20px_rgba(29,27,22,0.12)] pointer-events-auto flex items-center justify-between gap-1">
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="index.html">
+        <span class="material-symbols-outlined text-[19px]">palette</span>
+        <span class="font-label-caps text-xs uppercase">Works</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="about.html">
+        <span class="material-symbols-outlined text-[19px]">person</span>
+        <span class="font-label-caps text-xs uppercase">About</span>
+      </a>
+      <a aria-current="page" class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full transition-all bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1d1b16]" href="veritrust-ai.html">
+        <span class="material-symbols-outlined text-[19px]">verified_user</span>
+        <span class="font-label-caps text-xs uppercase">Case Study</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="contact.html">
+        <span class="material-symbols-outlined text-[19px]">mail</span>
+        <span class="font-label-caps text-xs uppercase">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+</body>
+</html>

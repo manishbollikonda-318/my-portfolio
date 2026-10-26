@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  
+  <title>Contact & Inquiries — Manish Bollikonda</title>
+  <meta name="description" content="Initiate a project brief or schedule an engineering conversation with Manish Bollikonda (AI Developer, GRIET AIML)."/>
+  <meta name="author" content="Manish Bollikonda"/>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/avatar.jpg"/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS CDN with Atelier Whimsy Design Tokens -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#9f3c16",
+            "primary-container": "#bf542c",
+            "on-primary": "#ffffff",
+            "primary-fixed": "#ffdbcf",
+            "primary-fixed-dim": "#ffb59c",
+            "on-primary-fixed": "#390c00",
+            "on-primary-fixed-variant": "#822801",
+            "background": "#fff9ef",
+            "surface": "#fff9ef",
+            "surface-dim": "#dfd9d1",
+            "surface-bright": "#fff9ef",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f9f3ea",
+            "surface-container": "#f3ede4",
+            "surface-container-high": "#ede7de",
+            "surface-container-highest": "#e7e2d9",
+            "on-surface": "#1d1b16",
+            "on-surface-variant": "#57423b",
+            "outline": "#8a726a",
+            "outline-variant": "#dec0b7",
+            "inverse-surface": "#1b2433",
+            "inverse-on-surface": "#f6f0e7",
+            "secondary": "#565f70",
+            "on-secondary": "#ffffff",
+            "secondary-container": "#d7e0f4",
+            "on-secondary-container": "#5a6374",
+            "secondary-fixed": "#dae3f7",
+            "secondary-fixed-dim": "#bec7db",
+            "on-secondary-fixed": "#131c2a",
+            "tertiary": "#7c5400",
+            "tertiary-container": "#9c6b00",
+            "tertiary-fixed": "#ffdeae",
+            "tertiary-fixed-dim": "#fdba45",
+            "on-tertiary-fixed": "#281900",
+            "on-tertiary-fixed-variant": "#604100"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "3xl": "1.5rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline-lg": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-md": ["'Bricolage Grotesque'", "sans-serif"],
+            "headline-sm": ["'Bricolage Grotesque'", "sans-serif"],
+            "display-hero": ["'Bricolage Grotesque'", "sans-serif"],
+            "body-lg": ["'Work Sans'", "sans-serif"],
+            "body-md": ["'Work Sans'", "sans-serif"],
+            "body-sm": ["'Work Sans'", "sans-serif"],
+            "label-caps": ["'Space Mono'", "monospace"],
+            "label-badge": ["'Space Mono'", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  
+  <style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #fff9ef;
+        color: #1d1b16;
+        font-family: 'Work Sans', sans-serif;
+      }
+      .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      }
+      .pt-safe {
+        padding-top: max(env(safe-area-inset-top, 0px), 12px);
+      }
+    }
+    
+    /* Sleek Desktop Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff9ef;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #dec0b7;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9f3c16;
+    }
+
+    .paper-edge {
+      box-shadow: 2px 2px 0px #1d1b16;
+    }
+    .paper-edge-lg {
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px #1d1b16;
+    }
+    .paper-edge-hover:active {
+      transform: translate(0px, 0px);
+      box-shadow: 1px 1px 0px #1d1b16;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- ==================== HEADER (RESPONSIVE DESKTOP & MOBILE) ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-outline/10 shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe">
+    <div class="max-w-6xl mx-auto h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+      
+      <!-- Brand & Monogram -->
+      <a href="index.html" class="flex items-center gap-3 shrink-0 group">
+        <div class="w-10 h-10 rounded-xl bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-sm tracking-wider paper-edge group-hover:rotate-2 transition-transform shrink-0">
+          MB
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-headline-sm text-base sm:text-lg font-bold text-on-surface tracking-tight whitespace-nowrap">Manish Bollikonda</span>
+            <span class="font-label-caps text-[11px] text-primary font-bold hidden lg:inline">• Contact</span>
+          </div>
+          <span class="font-label-badge text-[10px] sm:text-[11px] text-on-surface-variant uppercase tracking-wider hidden sm:block whitespace-nowrap">Direct Inquiries &amp; Sprints</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu (Centered) -->
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-outline/15 shadow-sm">
+        <a href="index.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Works</a>
+        <a href="about.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">About</a>
+        <a href="veritrust-ai.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all">Case Study</a>
+        <a href="contact.html" class="px-4 py-1.5 rounded-full font-label-caps text-xs uppercase font-bold bg-primary text-on-primary shadow-sm">Contact</a>
+      </nav>
+      
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high/90 text-on-surface">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-label-badge text-[11px] text-on-surface tracking-wider uppercase font-bold">Available</span>
+        </div>
+        <a href="assets/resume.pdf" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface font-label-caps text-xs uppercase font-bold border border-outline/15 hover:bg-surface-container transition-colors shadow-sm" title="View Resume">
+          <span class="material-symbols-outlined text-[16px] text-tertiary">download</span>
+          <span>Resume</span>
+        </a>
+        <a href="about.html" class="relative p-0.5 rounded-full bg-surface-container hover:scale-105 transition-transform" title="View About Manish">
+          <img alt="Manish Bollikonda" class="w-8 h-8 rounded-full object-cover border border-outline/20 shadow-sm" src="assets/avatar.jpg"/>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="flex-1 flex flex-col relative w-full pt-28 sm:pt-32 pb-24 md:pb-16 bg-surface">
+    <div class="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+      
+      <!-- ==================== 2-COLUMN RESPONSIVE GRID FOR DESKTOP ==================== -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        
+        <!-- LEFT COLUMN (lg:col-span-5): Overview, Direct Reach, Trust Indicators -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          
+          <!-- Hero Header Banner -->
+          <div class="bg-surface-container-low p-6 sm:p-7 rounded-2xl border border-outline/15 shadow-sm relative overflow-hidden flex flex-col gap-4">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest text-on-surface border border-outline/10">
+                <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                <span class="font-label-badge text-[11px] uppercase tracking-wider font-bold text-primary">Open For Sprints</span>
+              </div>
+              <span class="font-label-caps text-xs text-on-surface-variant uppercase font-mono">Vol. 2026 · Inquiries</span>
+            </div>
+
+            <div class="flex items-start justify-between gap-4 pt-1">
+              <div class="flex flex-col gap-1 min-w-0">
+                <h1 class="font-headline-lg text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight leading-tight">
+                  Let’s make something memorable together.
+                </h1>
+                <p class="font-body-md text-sm sm:text-base text-on-surface-variant mt-1 leading-relaxed">
+                  From production-grade LLM guardrails to high-converting responsive web platforms, bring your problem statement to the table and let's engineer it.
+                </p>
+              </div>
+              <div class="w-16 h-16 shrink-0 rounded-2xl bg-surface-container flex items-center justify-center shadow-sm overflow-hidden p-1 border border-outline/15 paper-edge">
+                <img alt="Manish Bollikonda" class="w-full h-full object-cover rounded-xl" src="assets/avatar.jpg"/>
+              </div>
+            </div>
+
+            <!-- Quick Trust Indicators Bento -->
+            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-outline/10">
+              <div class="bg-surface-container p-3 rounded-xl flex flex-col">
+                <span class="font-label-badge text-[10px] text-on-surface-variant uppercase font-bold">Response</span>
+                <span class="font-headline-sm text-base font-extrabold text-primary leading-tight">&lt; 12 hrs</span>
+              </div>
+              <div class="bg-surface-container p-3 rounded-xl flex flex-col">
+                <span class="font-label-badge text-[10px] text-on-surface-variant uppercase font-bold">Studio Zone</span>
+                <span class="font-headline-sm text-base font-extrabold text-on-surface leading-tight">IST (UTC+5:30)</span>
+              </div>
+              <div class="bg-surface-container p-3 rounded-xl flex flex-col">
+                <span class="font-label-badge text-[10px] text-on-surface-variant uppercase font-bold">Status</span>
+                <span class="font-headline-sm text-base font-extrabold text-tertiary-container leading-tight">Open</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Reach Cards -->
+          <div class="flex flex-col gap-3">
+            
+            <!-- Email Line -->
+            <div class="bg-surface-container p-5 rounded-2xl border border-outline/15 flex items-center justify-between gap-3 shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed shrink-0 font-bold">
+                  <span class="material-symbols-outlined text-[22px]">drafts</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-caps text-xs text-on-surface-variant uppercase font-bold">Direct Email Line</span>
+                  <a href="mailto:manishbollikonda@gmail.com" class="font-body-md text-sm sm:text-base text-on-surface font-bold truncate hover:text-primary transition-colors" id="studioEmailText">
+                    manishbollikonda@gmail.com
+                  </a>
+                </div>
+              </div>
+              <button class="shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-high text-on-surface hover:bg-surface-bright transition-all flex items-center gap-1 active:scale-95 shadow-sm border border-outline/10" id="copyEmailBtn" type="button">
+                <span class="material-symbols-outlined text-[16px]" id="copyIcon">content_copy</span>
+                <span class="font-label-badge text-xs font-bold uppercase tracking-wider" id="copyFeedback">Copy</span>
+              </button>
+            </div>
+
+            <!-- Phone / WhatsApp Line -->
+            <div class="bg-surface-container p-5 rounded-2xl border border-outline/15 flex items-center justify-between gap-3 shadow-sm">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-11 h-11 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 font-bold">
+                  <span class="material-symbols-outlined text-[22px]">call</span>
+                </div>
+                <div class="flex flex-col min-w-0">
+                  <span class="font-label-caps text-xs text-on-surface-variant uppercase font-bold">Phone &amp; WhatsApp</span>
+                  <span class="font-body-md text-sm sm:text-base text-on-surface font-bold truncate">
+                    +91 93924 05567
+                  </span>
+                </div>
+              </div>
+              <a href="https://wa.me/919392405567?text=Hi%20Manish,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you!" target="_blank" class="shrink-0 px-4 py-2 rounded-full bg-emerald-600 text-white hover:bg-emerald-700 transition-all flex items-center gap-1.5 active:scale-95 shadow-sm font-label-caps text-xs font-bold uppercase">
+                <span>WhatsApp</span>
+                <span class="material-symbols-outlined text-[16px]">chat</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Studio Profile Snapshot -->
+          <div class="bg-surface-container-low p-6 rounded-2xl border border-outline/15 text-center flex flex-col items-center gap-3">
+            <div class="w-14 h-14 rounded-full overflow-hidden p-0.5 bg-surface-container border border-outline/20">
+              <img alt="Manish Bollikonda" class="w-full h-full object-cover rounded-full" src="assets/avatar.jpg"/>
+            </div>
+            
+            <div>
+              <h4 class="font-headline-sm text-base font-bold text-on-surface">Manish Bollikonda</h4>
+              <p class="font-body-sm text-xs text-on-surface-variant max-w-sm mt-1">
+                AI Developer &amp; 2nd-year B.Tech AIML student at GRIET. Building real-world AI systems, guardrails, and enterprise platforms in Hyderabad, India.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-4 pt-1 text-xs font-label-caps uppercase text-primary font-bold">
+              <a href="https://linkedin.com/in/manishbollikonda" target="_blank" class="hover:underline">LinkedIn</a>
+              <span>•</span>
+              <a href="https://github.com/manishbollikonda-318" target="_blank" class="hover:underline">GitHub</a>
+              <span>•</span>
+              <a href="mailto:manishbollikonda@gmail.com" class="hover:underline">Email</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN (lg:col-span-7): Interactive Brief & Project Inquiry Form -->
+        <div class="lg:col-span-7 bg-surface-container-low p-6 sm:p-8 rounded-2xl border border-outline/15 shadow-sm">
+          <form class="flex flex-col gap-6" id="inquiryForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+            
+            <!-- Section 1: Scope & Discipline -->
+            <div class="flex flex-col gap-3">
+              <div class="flex items-baseline justify-between flex-wrap gap-1">
+                <label class="font-label-caps text-xs text-on-surface uppercase tracking-wider font-bold">
+                  01 / Scope &amp; Discipline
+                </label>
+                <span class="font-label-badge text-[11px] text-on-surface-variant">Select intended scope</span>
+              </div>
+
+              <div class="flex flex-wrap gap-2" id="scopePills">
+                <button class="scope-pill px-4 py-2 rounded-full bg-primary text-on-primary font-body-sm text-xs font-bold shadow-sm flex items-center gap-1.5 transition-all" data-scope="ai-guardrail" type="button">
+                  <span class="material-symbols-outlined text-[14px]">check</span>
+                  <span>AI Guardrails &amp; RAG</span>
+                </button>
+                <button class="scope-pill px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-body-sm text-xs shadow-sm flex items-center gap-1.5" data-scope="fullstack" type="button">
+                  <span>Full-Stack App (React + Python/Node)</span>
+                </button>
+                <button class="scope-pill px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-body-sm text-xs shadow-sm flex items-center gap-1.5" data-scope="website" type="button">
+                  <span>Business Website (25+ Shipped)</span>
+                </button>
+                <button class="scope-pill px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-body-sm text-xs shadow-sm flex items-center gap-1.5" data-scope="security" type="button">
+                  <span>Cybersecurity &amp; Encryption</span>
+                </button>
+                <button class="scope-pill px-4 py-2 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-all font-body-sm text-xs shadow-sm flex items-center gap-1.5" data-scope="internship" type="button">
+                  <span>Internship / Engineering Role</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Section 2: Timeline & Scale -->
+            <div class="flex flex-col gap-3">
+              <label class="font-label-caps text-xs text-on-surface uppercase tracking-wider font-bold">
+                02 / Timeline &amp; Engagement Scale
+              </label>
+
+              <div class="flex flex-col gap-3">
+                <!-- Timeline Selector -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-xl border border-outline/10 flex flex-col gap-2 shadow-sm">
+                  <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Estimated Kickoff</span>
+                  <div class="grid grid-cols-3 gap-2" id="timelineGroup">
+                    <button class="timeline-btn py-2.5 px-2 rounded-lg bg-surface-container text-on-surface text-center font-body-sm text-xs shadow-sm hover:bg-surface-container-high transition-all" data-timeline="immediate" type="button">
+                      Immediate (&lt; 1 wk)
+                    </button>
+                    <button class="timeline-btn py-2.5 px-2 rounded-lg bg-primary text-on-primary text-center font-body-sm text-xs shadow-sm transition-all font-bold" data-timeline="sprint" type="button">
+                      2–4 Wks Sprint
+                    </button>
+                    <button class="timeline-btn py-2.5 px-2 rounded-lg bg-surface-container text-on-surface text-center font-body-sm text-xs shadow-sm hover:bg-surface-container-high transition-all" data-timeline="flexible" type="button">
+                      Flexible / Role
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Investment Bracket Selector -->
+                <div class="bg-surface-container-lowest p-3.5 rounded-xl border border-outline/10 flex flex-col gap-2 shadow-sm">
+                  <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Scope / Investment Bracket</span>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="budgetGroup">
+                    <button class="budget-btn p-3 rounded-lg bg-surface-container text-left text-on-surface shadow-sm hover:bg-surface-container-high transition-all flex flex-col" data-budget="starter" type="button">
+                      <span class="font-headline-sm text-sm font-bold text-on-surface">Starter Delivery</span>
+                      <span class="font-label-badge text-[10px] text-on-surface-variant">Landing page / SMB site</span>
+                    </button>
+                    <button class="budget-btn p-3 rounded-lg bg-primary-fixed text-left text-on-primary-fixed shadow-sm transition-all flex flex-col border border-primary/20" data-budget="fullstack" type="button">
+                      <span class="font-headline-sm text-sm font-bold">Full-Stack Solution</span>
+                      <span class="font-label-badge text-[10px] text-on-primary-fixed-variant">React + Node/FastAPI app</span>
+                    </button>
+                    <button class="budget-btn p-3 rounded-lg bg-surface-container text-left text-on-surface shadow-sm hover:bg-surface-container-high transition-all flex flex-col" data-budget="ai-enterprise" type="button">
+                      <span class="font-headline-sm text-sm font-bold text-on-surface">Enterprise AI</span>
+                      <span class="font-label-badge text-[10px] text-on-surface-variant">Custom Guardrail / RAG</span>
+                    </button>
+                    <button class="budget-btn p-3 rounded-lg bg-surface-container text-left text-on-surface shadow-sm hover:bg-surface-container-high transition-all flex flex-col" data-budget="internship" type="button">
+                      <span class="font-headline-sm text-sm font-bold text-on-surface">Internship / Role</span>
+                      <span class="font-label-badge text-[10px] text-on-surface-variant">Engineering team hire</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Contact Particulars -->
+            <div class="flex flex-col gap-3">
+              <label class="font-label-caps text-xs text-on-surface uppercase tracking-wider font-bold">
+                03 / Your Particulars
+              </label>
+              
+              <div class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Full Name or Company</span>
+                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientName" placeholder="e.g. Alex Morgan / Stealth AI" required="" type="text"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Email Address</span>
+                  <input class="w-full px-4 py-3 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all" id="clientEmail" placeholder="e.g. alex@company.com" required="" type="email"/>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                  <span class="font-label-badge text-[11px] text-on-surface-variant uppercase font-bold">Project Details &amp; Objectives</span>
+                  <textarea class="w-full p-4 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-md text-sm focus:outline-none focus:ring-1 focus:ring-primary border border-outline/15 shadow-sm transition-all resize-none" id="clientBrief" placeholder="Describe the system, problem context, deliverables, or team requirements..." rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Submission Actions -->
+            <div class="flex flex-col gap-2.5 pt-2">
+              <button class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-primary text-on-primary font-label-caps text-xs uppercase font-bold paper-edge paper-edge-hover transition-all text-center" type="submit">
+                <span>Send Project Inquiry</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+
+              <button class="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-600 text-white font-label-caps text-xs uppercase font-bold paper-edge paper-edge-hover transition-all text-center" id="whatsappSendBtn" type="button" onclick="sendViaWhatsApp()">
+                <span>Send via WhatsApp (+91 93924 05567)</span>
+                <span class="material-symbols-outlined text-[18px]">chat</span>
+              </button>
+
+              <p class="text-center font-label-badge text-[11px] text-on-surface-variant mt-1">
+                🔒 All project details treated with strict non-disclosure care.
+              </p>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== DESKTOP FOOTER ==================== -->
+  <footer class="mt-auto border-t border-outline/15 bg-surface-container-low/80 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-inverse-surface text-inverse-on-surface flex items-center justify-center font-label-caps font-bold text-xs paper-edge">
+          MB
+        </div>
+        <div>
+          <span class="font-headline-sm text-sm font-bold text-on-surface">Manish Bollikonda</span>
+          <p class="font-body-sm text-xs text-on-surface-variant">B.Tech AIML @ GRIET • Hyderabad, India</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-6 font-label-caps text-xs uppercase font-bold text-on-surface-variant">
+        <a href="index.html" class="hover:text-primary transition-colors">Works</a>
+        <a href="about.html" class="hover:text-primary transition-colors">About</a>
+        <a href="veritrust-ai.html" class="hover:text-primary transition-colors">Case Study</a>
+        <a href="contact.html" class="text-primary transition-colors">Contact</a>
+        <a href="assets/resume.pdf" target="_blank" class="text-primary hover:underline">Resume (.PDF)</a>
+      </div>
+      <p class="font-label-badge text-xs text-outline">
+        © 2026 Manish Bollikonda
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== FIXED BOTTOM NAVIGATION (MOBILE ONLY) ==================== -->
+  <nav class="fixed bottom-0 inset-x-0 z-50 pb-safe pointer-events-none px-4 pb-3 md:hidden" aria-label="Mobile Bottom Navigation">
+    <div class="mx-auto max-w-md w-full bg-surface-container-lowest/95 backdrop-blur-xl rounded-full p-1.5 border border-outline/20 shadow-[0_4px_20px_rgba(29,27,22,0.12)] pointer-events-auto flex items-center justify-between gap-1">
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="index.html">
+        <span class="material-symbols-outlined text-[19px]">palette</span>
+        <span class="font-label-caps text-xs uppercase">Works</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="about.html">
+        <span class="material-symbols-outlined text-[19px]">person</span>
+        <span class="font-label-caps text-xs uppercase">About</span>
+      </a>
+      <a class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full text-on-surface-variant hover:text-on-surface transition-all" href="veritrust-ai.html">
+        <span class="material-symbols-outlined text-[19px]">verified_user</span>
+        <span class="font-label-caps text-xs uppercase">Case Study</span>
+      </a>
+      <a aria-current="page" class="flex-1 flex items-center justify-center gap-1.5 h-11 px-2 rounded-full transition-all bg-primary text-on-primary font-bold shadow-[2px_2px_0px_#1d1b16]" href="contact.html">
+        <span class="material-symbols-outlined text-[19px]">mail</span>
+        <span class="font-label-caps text-xs uppercase">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // Copy email handler
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const copyFeedback = document.getElementById('copyFeedback');
+    const copyIcon = document.getElementById('copyIcon');
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText('manishbollikonda@gmail.com').then(() => {
+          copyFeedback.textContent = 'Copied!';
+          copyIcon.textContent = 'check';
+          setTimeout(() => {
+            copyFeedback.textContent = 'Copy';
+            copyIcon.textContent = 'content_copy';
+          }, 2000);
+        });
+      });
+    }
+
+    // Scope Pill selection
+    let selectedScope = 'AI Guardrails & RAG';
+    const scopePills = document.querySelectorAll('.scope-pill');
+    scopePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        scopePills.forEach(p => {
+          p.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+          p.classList.add('bg-surface-container', 'text-on-surface');
+          const check = p.querySelector('.material-symbols-outlined');
+          if (check) check.remove();
+        });
+        pill.classList.remove('bg-surface-container', 'text-on-surface');
+        pill.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+        
+        const checkIcon = document.createElement('span');
+        checkIcon.className = 'material-symbols-outlined text-[14px]';
+        checkIcon.textContent = 'check';
+        pill.prepend(checkIcon);
+        selectedScope = pill.textContent.trim();
+      });
+    });
+
+    // Timeline selection
+    let selectedTimeline = '2–4 Wks Sprint';
+    const timelineBtns = document.querySelectorAll('.timeline-btn');
+    timelineBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timelineBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'font-bold');
+          b.classList.add('bg-surface-container', 'text-on-surface');
+        });
+        btn.classList.remove('bg-surface-container', 'text-on-surface');
+        btn.classList.add('bg-primary', 'text-on-primary', 'font-bold');
+        selectedTimeline = btn.textContent.trim();
+      });
+    });
+
+    // Budget selection
+    let selectedBudget = 'Full-Stack Solution';
+    const budgetBtns = document.querySelectorAll('.budget-btn');
+    budgetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        budgetBtns.forEach(b => {
+          b.classList.remove('bg-primary-fixed', 'text-on-primary-fixed', 'border', 'border-primary/20');
+          b.classList.add('bg-surface-container', 'text-on-surface');
+        });
+        btn.classList.remove('bg-surface-container', 'text-on-surface');
+        btn.classList.add('bg-primary-fixed', 'text-on-primary-fixed', 'border', 'border-primary/20');
+        selectedBudget = btn.querySelector('.font-headline-sm').textContent.trim();
+      });
+    });
+
+    // Form submission
+    function handleFormSubmit() {
+      const name = document.getElementById('clientName').value.trim();
+      const email = document.getElementById('clientEmail').value.trim();
+      const brief = document.getElementById('clientBrief').value.trim();
+
+      const subject = encodeURIComponent(`Project Inquiry: ${name} (${selectedScope})`);
+      const body = encodeURIComponent(
+        `Hi Manish,\n\nName / Organization: ${name}\nEmail: ${email}\nScope: ${selectedScope}\nTimeline: ${selectedTimeline}\nEngagement Scale: ${selectedBudget}\n\nProject Brief:\n${brief}\n\nLooking forward to hearing from you!`
+      );
+
+      window.location.href = `mailto:manishbollikonda@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Direct WhatsApp prefill
+    function sendViaWhatsApp() {
+      const name = document.getElementById('clientName').value.trim() || 'A Collaborator';
+      const brief = document.getElementById('clientBrief').value.trim() || 'Discuss an upcoming project/system';
+      
+      const text = encodeURIComponent(
+        `Hi Manish, I am ${name}.\nI would like to discuss: ${selectedScope} (${selectedTimeline}, ${selectedBudget}).\n\nBrief: ${brief}`
+      );
+      window.open(`https://wa.me/919392405567?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
