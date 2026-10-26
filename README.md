@@ -129,9 +129,6 @@ Designed with the **Atelier Whimsy** aesthetic (inspired by Google Stitch), the 
 
 ```
 my-portfolio/
-├── .github/
-│   └── workflows/
-│       └── deploy.yml        # Automatic GitHub Pages CI/CD workflow
 ├── assets/
 │   ├── avatar.jpg            # Square headshot crop
 │   ├── manish_full.jpg       # Full-resolution portrait
@@ -177,11 +174,10 @@ Double-click `index.html` to open it in Chrome, Safari, or Edge.
 
 ## ✦ Deployment
 
-### GitHub Pages (Automated via GitHub Actions)
-A pre-configured GitHub Actions workflow (`.github/workflows/deploy.yml`) is included.
-1. In your GitHub repository, navigate to **Settings** → **Pages**.
-2. Under **Build and deployment** → **Source**, select **GitHub Actions**.
-3. Every push to the `main` branch will automatically deploy the site.
+### GitHub Pages (Active)
+GitHub Pages is activated on the `main` branch (`/` root):
+- **Live URL**: [https://manishbollikonda-318.github.io/my-portfolio/](https://manishbollikonda-318.github.io/my-portfolio/)
+- Any new commits pushed to `main` update the live website automatically.
 
 ### Netlify
 ```bash
